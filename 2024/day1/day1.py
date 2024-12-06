@@ -998,3 +998,7 @@ inputs = '''76309   75213
 81837   86922
 67858   57654
 86460   95056'''.split('\n')
+
+for row in inputs:
+   l1, l2 = row.split('   ')
+   print(l1, l2)
