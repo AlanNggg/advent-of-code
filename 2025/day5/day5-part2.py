@@ -21,8 +21,15 @@ id_ranges, ids = [section.splitlines() for section in content.split('\n\n')]
 
 if id_ranges:
     sorted_ranges = sorted([tuple(map(int, id_range.split('-'))) for id_range in id_ranges])
+    last_end = sorted_ranges[0][1]
     res = 0
     for id_range in sorted_ranges:
         start, end = id_range
-        res += end - start + 1
+        if start <= last_end + 1:
+            if end > last_end:
+                res += end - last_end
+                last_end = end
+        else:
+            res += end - start + 1
+            last_end = end
     print(res)
